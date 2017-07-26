@@ -13,6 +13,6 @@ class TestSomething(object):
     def test_mult_loop(self):
         f = 10
         a = np.arange(60).reshape(5, 4, 3)
-        ref = a * f
+        ref = (a * f) ** 2
         b = calc_module.calc(a, f)
         assert_array_equal(ref, b)

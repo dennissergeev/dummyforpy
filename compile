@@ -16,7 +16,7 @@ baselib="$base/lib"
 src="$baselib/src"
 precc="$src/.precc"
 
-files="calc_module.f90"
+files="extra.f90 calc_module.f90"
 filec="const.f90"
 filek="kind.f90"
 

@@ -27,9 +27,12 @@ subroutine calc(res, var, factor, nx, ny, nz)
 
     real   (kind=nr) :: var (nx, ny, nz)
     real   (kind=nr) :: res (nx, ny, nz)
+    real   (kind=nr), allocatable :: arr (:, :, :)
     real   (kind=nr) :: factor
     
     integer(kind=ni) :: i, j, k
+
+    allocate(arr(nx, ny, nz))
     
     !f2py intent(out) res
     !f2py intent(in) var
@@ -39,10 +42,14 @@ subroutine calc(res, var, factor, nx, ny, nz)
     do k = 1, nz
       do j = 1, ny
         do i = 1, nx
-          res(i, j, k) = var(i, j, k) * factor
+          arr(i, j, k) = var(i, j, k) * factor
         enddo
       enddo
     enddo
+
+    call other(res, arr, nz-1, ny-1, nx-1)
+
+    deallocate(arr)
 
 end subroutine calc 
 
